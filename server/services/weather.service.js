@@ -117,13 +117,13 @@ export default {
         return true;
       })
       .filter(city => {
-        if (q.length < 4) return true;
+        if (q.length < 4) return;
 
         const name = city.name.toLowerCase();
         const distance =  compareStrings.get(name, q);
 
         if (q.length > 3
-        && distance < 5 + Math.min(Math.abs(name.length - q.length)), 3) {
+        && distance < 3 + Math.min(Math.abs(name.length - q.length), 3)) {
           levenshteinMatch.push(city);
 
           return false;
