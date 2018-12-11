@@ -1,0 +1,7 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": ["syntax-async-functions", "bluebird-async-functions", "transform-regenerator", "transform-class-properties"]
+}

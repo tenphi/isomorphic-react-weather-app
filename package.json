@@ -1,0 +1,58 @@
+{
+  "name": "react-weather-app",
+  "version": "1.0.0",
+  "description": "Demo of the React Weather App",
+  "main": "index.js",
+  "scripts": {
+    "server": "NODE_ENV=production babel-node ./server",
+    "server:dev": "nodemon --watch server --watch shared --exec \"babel-node\" ./server",
+    "build": "NODE_ENV=production webpack --config ./webpack.config.js",
+    "build:dev": "webpack --config ./webpack.config.js --watch",
+    "start": "npm run build && npm run server",
+    "start:dev": "parallelshell 'npm run build:dev' 'npm run server:dev'",
+    "stats": "NODE_ENV=production webpack --config ./webpack.config.js --profile --json > webpack-stats.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "isomorphic",
+    "fun"
+  ],
+  "author": "Andrey Yamanov <tenphi@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/node": "^7.2.0",
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
+    "express": "^4.16.4",
+    "fast-levenshtein": "^2.0.6",
+    "google-map-react": "^1.1.1",
+    "isomorphic-fetch": "^2.2.1",
+    "morgan": "^1.9.1",
+    "query-string": "^6.2.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-router": "^4.4.0-beta.6",
+    "react-router-config": "^4.4.0-beta.6",
+    "react-router-dom": "^4.4.0-beta.6",
+    "serialize-javascript": "^1.5.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-bluebird-async-functions": "^1.2.0",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less-loader": "^4.1.0",
+    "nodemon": "^1.18.7",
+    "parallelshell": "^3.0.2",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
