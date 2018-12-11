@@ -22,7 +22,7 @@ $ PORT=80 npm start
 ## Development
 
 ```
-$ npm start:dev
+$ npm run start:dev
 ```
 
 It will run dev server and webpack bundling in watch mode.
