@@ -2,7 +2,7 @@ import API from './api';
 
 function handleCityData(cityData) {
   cityData.data.forEach(datum => {
-    datum.date = new Date(datum.date);
+    datum.date = new Date(datum.date.split(' ')[0]);
   });
 
   return cityData;
