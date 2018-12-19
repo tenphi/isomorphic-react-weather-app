@@ -1,7 +1,10 @@
 import QueryString from 'query-string';
 import request from 'axios';
 
-const API_PATH = `http://localhost:${process.env.PORT || 8080}/api/`;
+const isProd = process.env.NODE_ENV === 'production';
+const API_PATH = isProd
+  ? `http://weather.tenphi.me/api/`
+  : `http://localhost:${process.env.PORT || 8080}/api/`;
 
 export default {
   get(path, query) {
