@@ -40,7 +40,7 @@ class MapPointerComponent extends Component {
 
     return (
       <div {...block('map-pointer')} onClick={this.onClick}>
-        <div {...elem('container', 'data')}>{data}</div>
+        { data ? <div {...elem('container', 'data')}>{data}</div> : null }
         <div {...elem('container', 'city')}>{city.name}</div>
         <div {...elem('point')}></div>
       </div>
