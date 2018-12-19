@@ -5,8 +5,9 @@ export default function renderPage(html, preloadedState) {
 <html>
 <head>
   <title>Demo of the React Weather App</title>
+  <link rel="stylesheet" href="/bundle.css" />
 </head>
-<body>
+<body style="margin: 0;">
 <div id="root">${html}</div>
 <script>
   window.__ROUTE_DATA__ = ${serialize(preloadedState)}

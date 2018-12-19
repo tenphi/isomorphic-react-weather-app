@@ -1,5 +1,5 @@
-import HomePage from './pages/home.page';
-import CityPage from './pages/city.page';
+import HomePage from './pages/home';
+import CityPage from './pages/city';
 import NotFoundPage from './pages/not-found.page';
 
 const AppRoutes = [

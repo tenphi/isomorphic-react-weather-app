@@ -1,0 +1,54 @@
+.map-switcher {
+  display: block;
+  white-space: nowrap;
+  background: white;
+  box-shadow: 1px 1px 30px rgba(0, 0, 0, .2);
+  border-radius: .125em;
+  overflow: hidden;
+
+  &__button {
+    width: 3em;
+    height: 3em;
+    background-size: 1.5em 1.5em;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image .133s linear, background-color .133s linear;
+    cursor: pointer;
+
+    &--active {
+      background-color: rgba(65, 105, 225, .2);
+    }
+
+    &--name {
+      background-image: url(../../images/font.svg?fill=#333);
+    }
+
+    &--temperature {
+      background-image: url(../../images/thermometer.svg?fill=#333);
+    }
+
+    &--rain {
+      background-image: url(../../images/drizzle.svg?fill=#333);
+    }
+
+    &--precipitation {
+      background-image: url(../../images/precipitation.svg?fill=#333);
+    }
+
+    &:hover&--name, &--active&--name {
+      background-image: url(../../images/font.svg?fill=royalblue);
+    }
+
+    &:hover&--temperature, &--active&--temperature {
+      background-image: url(../../images/thermometer.svg?fill=royalblue);
+    }
+
+    &:hover&--rain, &--active&--rain {
+      background-image: url(../../images/drizzle.svg?fill=royalblue);
+    }
+
+    &:hover&--precipitation, &--active&--precipitation {
+      background-image: url(../../images/precipitation.svg?fill=royalblue);
+    }
+  }
+}

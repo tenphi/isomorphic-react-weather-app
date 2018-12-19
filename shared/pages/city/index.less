@@ -1,0 +1,64 @@
+@import '../../variables';
+
+.city-page {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  width: 100%;
+  max-width: 300px;
+  background: white;
+  box-shadow: 1px 1px 30px rgba(0, 0, 0, .2);
+  border-radius: .125em;
+  padding-top: 4em;
+
+  &__city {
+    display: block;
+    font-size: 1.4em;
+    font-weight: 600;
+    padding: .5em 1em;
+  }
+
+  &__city-label {
+    display: inline-block;
+    color: #bbb;
+  }
+
+  &__weather-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  &__weather-item {
+    border-top: 1px solid rgba(0, 0, 0, .1);
+
+    &:nth-child(odd) {
+      background-color: #f8f8f8;
+    }
+  }
+
+  &__weather-header-item {
+    text-align: center;
+    padding-right: 1em;
+    white-space: nowrap;
+  }
+
+  &__weather-header-label {
+    font-size: .5em;
+    line-height: .2em;
+  }
+
+  &__weather-data {
+    padding: .2em 0;
+    line-height: 1.8em;
+    box-sizing: border-box;
+    font-size: .8em;
+
+    &--date {
+      font-weight: 600;
+      padding-left: 1em;
+      font-size: 1em;
+    }
+  }
+
+  .icon-mixin();
+}

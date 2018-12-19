@@ -1,0 +1,107 @@
+@import '../../variables';
+
+.home-page {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  width: 100%;
+  max-width: 300px;
+  max-height: calc(100vh - 5em);
+  background: white;
+  box-shadow: 1px 1px 30px rgba(0, 0, 0, .2);
+  border-radius: .125em;
+  overflow: hidden;
+
+  &__search-box {
+    display: block;
+    position: absolute;
+    top: 4em;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+  }
+
+  &__search-box-input {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    line-height: 3em;
+    padding: 0 0 0 3em;
+    border-radius: .125em;
+    background-image: url(../../images/search.svg?fill=#333);
+    background-repeat: no-repeat;
+    background-size: 1em 1em;
+    background-position: 1.1em center;
+  }
+
+  &__items {
+    position: absolute;
+    top: calc(7em + 1px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: scroll;
+  }
+
+  &__item {
+    display: block;
+    clear: both;
+    line-height: 2em;
+    transition: background-color .133s linear;
+    background-color: rgba(65, 105, 225, 0);
+
+    &:not(&--not-found):hover {
+      background-color: rgba(65, 105, 225, .2);
+    }
+
+    &:nth-child(odd) {
+      background-color: #f8f8f8;
+    }
+
+    &--not-found {
+      padding: 0 1em;
+      color: #bbb;
+    }
+  }
+
+  &__item a {
+    display: block;
+    color: royalblue;
+    cursor: pointer;
+    padding: 0 1em .5em 1em;
+    color: #333;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .133s linear;
+
+    &:hover {
+      color: royalblue;
+    }
+  }
+
+  &__params {
+    display: block;
+    color: #333;
+    font-size: .9em;
+    line-height: 1.5em;
+  }
+
+  &__params-block {
+    display: inline-block;
+    margin-left: .5em;
+
+    &:nth-child(1) {
+      width: 97px;
+    }
+
+    &:nth-child(2) {
+      width: 58px;
+    }
+  }
+
+  .icon-mixin();
+}

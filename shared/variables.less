@@ -1,0 +1,29 @@
+.icon-mixin() {
+  &__icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+    position: relative;
+    top: -.125em;
+
+    &--date {
+      background-image: url(./images/calendar.svg?fill=#333);
+    }
+
+    &--precipitation {
+      background-image: url(./images/precipitation.svg?fill=#333);
+    }
+
+    &--temperature {
+      background-image: url(./images/thermometer.svg?fill=#333);
+    }
+
+    &--rain {
+      background-image: url(./images/drizzle.svg?fill=#333);
+    }
+  }
+}

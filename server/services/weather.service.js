@@ -13,6 +13,7 @@
 
 /**
  * WeatherDataItem
+ * @property {string} date
  * @property {number} temperatureMin
  * @property {number} temperatureMax
  * @property {number} precipitationProbability
@@ -34,12 +35,29 @@ import compareStrings from 'fast-levenshtein';
 /**
  * @type [WeatherRawItem]
  */
-import data from '../../shared/data/weather';
+import data from '../data/weather';
 
 const cities = {};
 
+const defaultCities = [
+  'Amsterdam',
+  'Rotterdam',
+  'Den Haag',
+  'Utrecht',
+  'Eindhoven',
+  'Tilburg',
+  'Groningen',
+  'Almere',
+  'Breda',
+  'Nijmegen',
+];
+
+function getSlug(name) {
+  return name.toLowerCase().replace(/\s+/g, '-');
+}
+
 data.forEach(item => {
-  const slug = item.place_name.toLowerCase();
+  const slug = getSlug(item.place_name);
 
   if (!cities[slug]) {
     cities[slug] = {
@@ -53,6 +71,7 @@ data.forEach(item => {
   }
 
   const dataItem = {
+    date: item.datetime,
     temperatureMax: item.temperature_max,
     temperatureMin: item.temperature_min,
     precipitationProbability: item.precipitation_probability,
@@ -85,6 +104,12 @@ export default {
     const containMatch = [];
     const levenshteinMatch = [];
     const q = query.trim().toLowerCase();
+
+    if (!q) {
+      return defaultCities
+        .map(city => this.getCityByName(city))
+        .filter(city => city);
+    }
 
     citiesCollection
       .filter(city => {
@@ -151,7 +176,7 @@ export default {
    * @returns {City}
    */
   getCityByName(slug) {
-    slug = slug.toLowerCase();
+    slug = getSlug(slug);
 
     return cities[slug];
   }
