@@ -7,7 +7,7 @@ export default class SimpleStore {
   bind(component) {
     this.components.add(component);
 
-    Object.assign(component.state,this.state);
+    component.setState(this.state);
   }
 
   unbind(component) {

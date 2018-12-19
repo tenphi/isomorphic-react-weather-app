@@ -45,6 +45,7 @@ class MapComponent extends Component {
 
   render() {
     const { cities, type } = this.state;
+    const { history } = this.props;
 
     return (
       <div {...block('map')}>
@@ -75,6 +76,7 @@ class MapComponent extends Component {
                 data={city}
                 type={type}
                 key={city.name}
+                history={history}
               />))
           }
         </GoogleMap>

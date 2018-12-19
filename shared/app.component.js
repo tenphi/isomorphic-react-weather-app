@@ -5,11 +5,10 @@ import routes from './app.routes';
 import MapComponent from './components/map';
 import CopyrightComponent from './components/copyright';
 
-const App = () => {
-
+const App = ({ history }) => {
   return (
     <div id="app">
-      <MapComponent />
+      <MapComponent history={history} />
       <Switch>
         {renderRoutes(routes)}
       </Switch>

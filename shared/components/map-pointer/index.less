@@ -21,6 +21,7 @@
     overflow: hidden;
     width: min-content;
     white-space: nowrap;
+    transition: transform .5s ease-out;
 
     &--city {
       position: absolute;
@@ -28,11 +29,13 @@
       left: 0;
       font-size: .6em;
       text-transform: uppercase;
+      transform-origin: left bottom;
       transform: translate(0, -100%);
     }
 
     &--data {
       font-size: .7em;
+      transform-origin: left top;
       transform: translate(0, 0);
     }
   }
@@ -50,4 +53,12 @@
   }
 
   .icon-mixin();
+
+  &:hover &__container--city {
+    transform: translate(0, -100%) scale(1.2);
+  }
+
+  &:hover &__container--data {
+    transform: translate(0, 0) scale(1.2);
+  }
 }

@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import WeatherService from '../../services/weather.service';
 import BEM from '../../utils/bemnames';
 import MapStore from '../../stores/map.store';
+import MapComponent from '../../components/map';
 
 const { block, elem } = BEM();
 
@@ -79,7 +80,7 @@ class HomePage extends PageComponent {
                   <div {...elem('params')}>
                     <div {...elem('params-block')}>
                       <span {...elem('icon', 'temperature')} />
-                      &nbsp;{city.data[0].temperatureMin}°-{city.data[0].temperatureMax}°
+                      &nbsp;{city.data[0].temperatureMax}°/{city.data[0].temperatureMin}°
                     </div>
                     <div {...elem('params-block')}>
                       <span {...elem('icon', 'rain')} />

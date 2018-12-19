@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import BEM from '../../utils/bemnames';
+import {NavLink } from 'react-router-dom';
 
 const { block, elem } = BEM('map-pointer');
 
 class MapPointerComponent extends Component {
+  onClick = () => {
+    const { data: { slug }, history } = this.props;
+
+    history.push(`/city/${slug}`);
+  }
+
   render() {
     const city = this.props.data;
     const type = this.props.type || 'temperature';
@@ -32,7 +39,7 @@ class MapPointerComponent extends Component {
     }
 
     return (
-      <div {...block('map-pointer')}>
+      <div {...block('map-pointer')} onClick={this.onClick}>
         <div {...elem('container', 'data')}>{data}</div>
         <div {...elem('container', 'city')}>{city.name}</div>
         <div {...elem('point')}></div>
