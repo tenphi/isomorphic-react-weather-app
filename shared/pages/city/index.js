@@ -1,9 +1,9 @@
 import React from 'react';
 import PageComponent from '../page';
-import TodayComponent from '../../components/today';
 import WeatherService from '../../services/weather.service';
 import BEM from '../../utils/bemnames';
 import MapStore from '../../stores/map.store';
+import { NavLink } from 'react-router-dom';
 
 const { block, elem } = BEM();
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -19,6 +19,10 @@ class CityPage extends PageComponent {
    */
   state
 
+  defaultState = {
+    date: 0
+  }
+
   static async loadData({ name }){
     const cityData = await WeatherService.getCityByName(name);
 
@@ -33,16 +37,19 @@ class CityPage extends PageComponent {
     if (city) {
       MapStore.set({ cities: [city] });
     }
+
+    this.setState({ date: MapStore.state.date });
   }
 
   render() {
-    const { city } = this.state;
+    const { city, date } = this.state;
+    const dataIndex = WeatherService.getDataIndexFromDate(date);
 
     return (
       <div {...block('city-page')}>
-        <TodayComponent backButton />
         { city ? (<div>
-          <div {...elem('city')}>{city.name} <div {...elem('city-label')}>city</div></div>
+          <NavLink {...elem('nav-back')} to="/" ></NavLink>
+          <div {...elem('city')}><div {...elem('city-name')}>{city.name}</div> <div {...elem('city-label')}>city</div></div>
           <table {...elem('weather-table')}>
             <thead>
               <tr {...elem('weather-header')}>
@@ -60,8 +67,8 @@ class CityPage extends PageComponent {
               </tr>
             </thead>
             <tbody>
-              { city.data.map(datum =>
-                <tr {...elem('weather-item')} key={datum.date.toString()}>
+              { city.data.map((datum, index) =>
+                <tr {...elem('weather-item', { active: dataIndex === index })} key={datum.date.toString()}>
                   <td {...elem('weather-data', 'date')}>{getDateMarkup(datum.date)}</td>
                   <td {...elem('weather-data', 'temperature')}>
                     {datum.temperatureMax}°

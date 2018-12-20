@@ -1,11 +1,10 @@
 import React from 'react';
 import PageComponent from '../page';
-import TodayComponent from '../../components/today';
+import DatePickerComponent from '../../components/date-picker';
 import { NavLink } from 'react-router-dom';
 import WeatherService from '../../services/weather.service';
 import BEM from '../../utils/bemnames';
 import MapStore from '../../stores/map.store';
-import MapComponent from '../../components/map';
 
 const { block, elem } = BEM();
 
@@ -24,6 +23,7 @@ class HomePage extends PageComponent {
   static defaultState = {
     query: '',
     cities: [],
+    date: 8,
   }
 
   constructor(props) {
@@ -47,6 +47,8 @@ class HomePage extends PageComponent {
     const { cities } = this.state;
 
     MapStore.set({ cities });
+
+    this.setState({ date: MapStore.state.date });
   }
 
   onQueryChange = async (event) => {
@@ -59,13 +61,20 @@ class HomePage extends PageComponent {
     this.setState(state);
   }
 
+  onDateChange = (date) => {
+    this.setState({ date });
+
+    MapStore.set({ date });
+  }
+
   render() {
-    const { query, cities } = this.state;
+    const { query, cities, date } = this.state;
+    const dataIndex = WeatherService.getDataIndexFromDate(date);
 
     return (
       <div {...block('home-page')} style={{ height: `calc(${(7 + Math.max(cities.length, 1) * 4)}em + 2px)` }}>
         <div {...elem('content')}>
-          <TodayComponent/>
+          <DatePickerComponent date={date} onChange={this.onDateChange} />
           <div {...elem('search-box')}>
             <input {...elem('search-box-input')}
                    type="text"
@@ -76,19 +85,19 @@ class HomePage extends PageComponent {
           <div {...elem('items')}>
             {cities.map((city, i) => {
               return <div {...elem('item', { odd: i % 2 })} key={city.slug}>
-                <NavLink to={`/city/${encodeURIComponent(city.slug)}`}>{city.name}
+                <NavLink {...elem('item-link')} to={`/city/${encodeURIComponent(city.slug)}`}>{city.name}
                   <div {...elem('params')}>
                     <div {...elem('params-block')}>
                       <span {...elem('icon', 'temperature')} />
-                      &nbsp;{city.data[0].temperatureMax}°/{city.data[0].temperatureMin}°
+                      &nbsp;{city.data[dataIndex].temperatureMax}°/{city.data[dataIndex].temperatureMin}°
                     </div>
                     <div {...elem('params-block')}>
                       <span {...elem('icon', 'rain')} />
-                      &nbsp;{city.data[0].precipitationProbability}%
+                      &nbsp;{city.data[dataIndex].precipitationProbability}%
                     </div>
                     <div {...elem('params-block')}>
                       <span {...elem('icon', 'precipitation')} />
-                      &nbsp;{city.data[0].precipitation}mm
+                      &nbsp;{city.data[dataIndex].precipitation}mm
                     </div>
                   </div>
                 </NavLink>

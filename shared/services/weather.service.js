@@ -25,5 +25,12 @@ export default {
   getCityByName(name) {
     return API.get(`weather/city`, { name })
       .then(handleCityData);
+  },
+
+  /**
+   * @param {number} date
+   */
+  getDataIndexFromDate(date) {
+    return date - 8;
   }
 };

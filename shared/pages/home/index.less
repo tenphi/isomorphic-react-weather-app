@@ -1,5 +1,13 @@
 @import '../../variables';
 
+.page {
+  position: static;
+
+  &__search-box {
+    background-color: red;
+  }
+}
+
 .home-page {
   position: absolute;
   left: 1em;
@@ -15,7 +23,7 @@
   &__search-box {
     display: block;
     position: absolute;
-    top: 4em;
+    top: 6em;
     left: 0;
     right: 0;
     box-sizing: border-box;
@@ -40,7 +48,7 @@
 
   &__items {
     position: absolute;
-    top: calc(7em + 1px);
+    top: calc(9em + 1px);
     left: 0;
     right: 0;
     bottom: 0;
@@ -68,7 +76,7 @@
     }
   }
 
-  &__item a {
+  &__item-link {
     display: block;
     color: royalblue;
     cursor: pointer;

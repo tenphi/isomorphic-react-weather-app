@@ -3,6 +3,7 @@ import GoogleMap from 'google-map-react';
 import MapSwitcherComponent from '../map-switcher';
 import MapPointerComponent from '../map-pointer';
 import MapStore from '../../stores/map.store';
+import Storage from '../../services/storage';
 import themeStyles from './theme';
 import BEM from '../../utils/bemnames';
 
@@ -19,7 +20,8 @@ class MapComponent extends Component {
 
   state = {
     cities: [],
-    type: 'name'
+    type: 'name',
+    dataIndex: 0
   }
 
   constructor(props) {
@@ -30,7 +32,7 @@ class MapComponent extends Component {
     MapStore.bind(this);
 
     this.setState({
-      type: localStorage.getItem('mapType') || 'name'
+      type: Storage.get('mapType') || 'name'
     });
   }
 
@@ -40,11 +42,11 @@ class MapComponent extends Component {
 
   onTypeChange = (type) => {
     this.setState({ type });
-    localStorage.setItem('mapType', type);
+    Storage.set('mapType', type);
   }
 
   render() {
-    const { cities, type } = this.state;
+    const { cities, type, date } = this.state;
     const { history } = this.props;
 
     return (
@@ -74,6 +76,7 @@ class MapComponent extends Component {
                 lat={city.latitude}
                 lng={city.longitude}
                 data={city}
+                date={date}
                 type={type}
                 key={city.name}
                 history={history}

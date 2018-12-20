@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BEM from '../../utils/bemnames';
-import {NavLink } from 'react-router-dom';
+import WeatherService from '../../services/weather.service';
 
 const { block, elem } = BEM('map-pointer');
 
@@ -12,28 +12,28 @@ class MapPointerComponent extends Component {
   }
 
   render() {
-    const city = this.props.data;
-    const type = this.props.type || 'temperature';
+    const { data: city, type, date } = this.props;
+    const dataIndex = WeatherService.getDataIndexFromDate(date);
 
     let data;
 
-    switch(type) {
+    switch(type || 'temperature') {
       case 'temperature':
         data = <div {...elem('data')}>
           <span {...elem('icon', 'temperature')} aria-label="Temperature" />
-          &nbsp;{city.data[0].temperatureMax}°
+          &nbsp;{city.data[dataIndex].temperatureMax}°
         </div>
         break;
       case 'rain':
         data = <div {...elem('data')} aria-label="Precipitation Probability">
           <span {...elem('icon', 'rain')} />
-          &nbsp;{city.data[0].precipitationProbability}%
+          &nbsp;{city.data[dataIndex].precipitationProbability}%
         </div>
         break;
       case 'precipitation':
         data = <div {...elem('data')} aria-label="Precipitation (mm)">
           <span {...elem('icon', 'precipitation')} />
-          &nbsp;{city.data[0].precipitation}mm
+          &nbsp;{city.data[dataIndex].precipitation}mm
         </div>
         break;
     }

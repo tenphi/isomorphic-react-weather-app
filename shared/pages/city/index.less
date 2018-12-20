@@ -9,13 +9,21 @@
   background: white;
   box-shadow: 1px 1px 30px rgba(0, 0, 0, .2);
   border-radius: .125em;
-  padding-top: 4em;
 
   &__city {
     display: block;
-    font-size: 1.4em;
+    height: 4em;
+    margin-bottom: 1em;
+    box-sizing: border-box;
     font-weight: 600;
-    padding: .5em 1em;
+    padding: .5em 1em 0.5em 3em;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+  }
+
+  &__city-name {
+    display: inline-block;
+    font-size: 1.4em;
+    line-height: 2em;
   }
 
   &__city-label {
@@ -33,6 +41,14 @@
 
     &:nth-child(odd) {
       background-color: #f8f8f8;
+    }
+
+    &--active {
+      background-color: rgba(65, 105, 225, .2);
+
+      &:nth-child(odd) {
+        background-color: rgba(65, 105, 225, .2);
+      }
     }
   }
 
@@ -57,6 +73,25 @@
       font-weight: 600;
       padding-left: 1em;
       font-size: 1em;
+    }
+  }
+
+  &__nav-back {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    height: 4em;
+    width: 2em;
+    transition: background-color .133s linear;
+    background-image: url(../../images/back.svg?fill=#333);
+    background-size: 1.5em 1.5em;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-right: 1px solid rgba(0, 0, 0, .2);
+
+    &:hover {
+      background-color: rgba(65, 105, 225, .2);
     }
   }
 

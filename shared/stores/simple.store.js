@@ -15,10 +15,16 @@ export default class SimpleStore {
   }
 
   set(state = {}) {
+    if (this.willReceiveState(state) === false) return;
+
     Object.assign(this.state, state);
 
     this.components.forEach(component => {
       component.setState(this.state);
     });
+  }
+
+  willReceiveState(state) {
+
   }
 };
